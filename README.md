@@ -1,5 +1,9 @@
 # DA6401 Assignment 1: Neural Networks from scratch
 
+[Github](https://github.com/AshwinSankar17/da6401_assignment1)
+[Wandb Report](https://api.wandb.ai/links/iamunr4v31/by0y02o5)
+
+
 ## Instructions
 
 The code is written in Python 3.10.9. The following libraries are used:
