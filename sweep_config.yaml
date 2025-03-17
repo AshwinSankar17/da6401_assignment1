@@ -1,0 +1,52 @@
+sweep:
+  method: bayes
+  metric:
+    name: val_loss
+    goal: minimize
+  parameters:
+    hidden_activations:
+      values: ["tanh", "relu", "sigmoid"]
+    init_strategy:
+      values: ["he", "xavier", "normal"]
+    loss_fn:
+      values: ["nll", "mse"]
+    optimizer:
+      values: ["sgdm", "nag", "rmsprop", "adamw"]
+    learning_rate:
+      distribution: log_uniform
+      min: 1e-5
+      max: 1e-2
+    n_epochs:
+      value: 20
+    batch_size:
+      values: [16, 32, 64]
+    weight_decay:
+      distribution: log_uniform
+      min: 1e-4
+      max: 1e-1
+    beta_1:
+      distribution: uniform
+      min: 0.0
+      max: 0.9
+    beta_2:
+      distribution: uniform
+      min: 0.9
+      max: 0.999
+    hidden_sizes:
+      values: [
+        (128, 128, 128),  # Same hidden sizes
+        (256, 256, 256),  # Same hidden sizes
+        (512, 512, 512),  # Same hidden sizes
+        (256, 128, 64),   # Decreasing hidden sizes
+        (512, 256),       # Shallower but wide networks
+        (64, 64, 64, 32, 32, 32, 16, 16),  # Deep narrow networks
+        (128, 64, 32),    # Original configuration
+        (256, 128, 64),   # Slightly larger
+        (512, 256, 128),  # Even larger
+        (1024, 512, 256, 128)  # Very deep and wide
+        (2048, 1024, 512, 256, 128)  # Very deep and wide
+      ]
+    epsilon:
+      distribution: log_uniform
+      min: 1e-8
+      max: 1e-6
